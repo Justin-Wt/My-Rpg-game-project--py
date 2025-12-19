@@ -1,0 +1,16 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Save / data files (auto-generated)
+*.txt
+*.log
+
+# Build / executable files
+dist/
+build/
+*.exe
+
+# OS junk
+.DS_Store
+Thumbs.db
