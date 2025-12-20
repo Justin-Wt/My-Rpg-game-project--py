@@ -46,7 +46,12 @@ class Inventory:
         lines = []
         lines.append(f"        weapon:\n           -{self.weapon}")
         lines.append(f"        armor:\n           -{self.armor}")
-
+        if self.accesory:
+            lines.append(f"        accesory:\n")
+            for item in self.accesory:
+                lines.append(f"          -{item}")
+        else:
+            lines.append(f"        accesory:\n          -empty")
         if self.items:
             lines.append("        items:")
             for name, count in self.items.items():
