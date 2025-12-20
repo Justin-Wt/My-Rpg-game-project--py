@@ -1,17 +1,33 @@
 class Inventory:
-    def __init__(self, weapon="Empty", health_potion=0, mana_potion=0, armor="Empty"):
+    def __init__(self, weapon="Empty", health_potion=0, mana_potion=0,gold=200, armor="Empty"):
         self.weapon = weapon
         self.armor = armor
         self.items = {
+            "gold": gold,
             "health potion": health_potion,
             "mana potion": mana_potion
         }
+        self.accesory=[]
 
     def add_item(self, item, amount=1):
-        if item in self.items:
-            self.items[item] += amount
+        stackable=["health potion","mana potion","gold"]
+        weapon=["sword","dagger"]
+        # Non-stackable items
+        if item in stackable:
+            # Stackable items
+            if item in self.items:
+                self.items[item] += amount
+            else:
+                self.items[item] = amount
+            print(f"{amount} {item}(s) added to inventory")
         else:
-            self.items[item] = amount
+            if item in weapon:
+                self.weapon = item
+            if item.endswith("armor"):
+                self.armor = item
+            else:
+                self.accesory.append(item)
+            print(f"{item} equipped!")
 
     def remove_item(self, item, amount=1):
         if item in self.items and self.items[item]>=amount:
