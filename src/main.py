@@ -1,24 +1,34 @@
 from player import Player
 from scores import save_player,view,TopScore,reset
-from inventory import Inventory 
-reset()
-p1=Player("justin",level=10,hp=24, strength=45, defense=64,health_potion=5,mana_potion=3,weapon="sword",armor="iron armor")
+from race import race_pick, show_race
+from inventory import Inventory
+from shop import shop_menu
+'''
+time developed: 44 hours + 179 hours from first prototype.
+15 hours+ spent on learning classes,io, and __name__
+--------------------------updates--------------------------
+V1.0:creating main.py,scores.py,player.py
+V1.1:creating inventory.py,enemy.py
+V1.2:updating inventory.py,enemy.py and creatinf battle.py
+v1.3:creating shop.py, race.py and creating ranks
+----------------------UpcomingFeature----------------------
+1.Skills
+2.more enemy choices
+3.crafting
+4.better UI
+5.converting to LUA
+6.converting into pygame
+7.converting into .exe
+8.convertinf into .apk
+9.using cv2
+10.using socket
+------------------------------------------------------------
+'''
+name=input("whats your name?")
+show_race()
+pick=int(input("what race you want to pick? "))-1
+race,hp,strength,defense,level=race_pick(pick)
 
-print(p1)
-save_player(p1)
-p1.inventory.add_item("health potion")
-p1.add_hp(21)
-print(p1)
-save_player(p1)
-input("click enter to continue")
-
-p2=Player("Cain", strength=21,hp=55,defense=21,weapon="dagger",health_potion=12,mana_potion=14,armor="steel armor")
-print(p2)
-p2.add_str(12)
-p2.add_defs(42)
-print(p2)
-save_player(p2)
-input("click enter to continue")
-view()
-TopScore()
-input("click enter to continue")
+player=Player(name,race,hp,strength,defense,level)
+print(player)
+shop_menu(player)
