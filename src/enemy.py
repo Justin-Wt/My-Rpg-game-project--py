@@ -1,10 +1,11 @@
 import random
 class Enemy:
-	def __init__(self,name,hp=10,strength=5,defense=3,level=1,loot=None):
+	def __init__(self,name,level=1,base_hp=10, base_strength=5,base_defense=3,loot=None):
 		self.name=name
-		self.hp=hp
-		self.strength=strength
-		self.defense=defense
+		self.level=level
+		self.hp=base_hp+3*level
+		self.strength=base_strength+level
+		self.defense=base_defense+level
 		self.level=level
 		self.loot=loot if loot is not None else []
 	def drop_loot(self):
@@ -31,6 +32,22 @@ class Enemy:
 		damage=max(0,self.strength-player.defense)
 		player.hp=max(0,player.hp-damage)
 		print(f"the {self.name} dealth {damage} damage")
+		 
 	def __str__(self):
 		return f"{self.name:<10} level:{self.level}\n{'':-<20}\nhp:{self.hp}\nstrength:{self.strength}\ndefense:{self.defense}\n{'':-<20}"
 
+def enemy_picker(choice=1):
+		 if choice==1:
+		 	level=random.randint(1,10)
+		 	ENEMIES = [
+		 	("Goblin",level, 10, 2, 1, [("gold", 100, 100),("goblin necklace",25,1)]),
+		 	("Wolf",level, 12, 3, 4, [("fang", 30, 1)]),
+		 	("Slime",level, 8, 1, 0, [("gold", 100, 5),("slime gel", 60, 1),("health potion", 25, 1),("sticky core", 5, 1)])
+		 	]
+		 	return Enemy(*random.choice(ENEMIES))
+
+#enemy test
+if __name__=="__main__":
+	enemy1=enemy_picker(1)
+	print(enemy1)
+	drop_loot()
