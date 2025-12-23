@@ -1,30 +1,47 @@
-This is a project that i start
-after a week learning python.
+# RPG Console Game (Python)
 
-My first iteration for this game is
-to make a simple battle system.
-Then i started to adding more content
-each time i learn something new
+This project started one week after I began learning Python.
 
-Like adding def and some loops.
-amd then i start to make something
-more complex, colors, auto remove,
-try and excepts, dictionaries.
-that is the second mode of it,
-i called it rpg.py
+My first goal was simple:  
+to build a basic battle system.  
+As I learned new concepts, I kept adding features and improving the design.
 
-and then at month 6,
-when i start rebuilding it,
-i keep learning a new stuff day by day
-i learnt classes, oop, I/O, classmethod,
-inheritance,json file and more
+At first, the game was written in a single file (rpg.py) using basic tools like:
+- variables
+- loops
+- functions
+- simple conditionals
 
-it wasnt a smooth ride just because i
-write the good parts, theres tons
-of errors i have encountered,
-ranging from ValueError, SyntaxError,
-FileNotFoundError, misspelled words,
-infinite loops, recursive imports,
+Over time, I learned more advanced concepts such as:
+- ANSI colors for UI
+- dictionaries
+- error handling (try/except)
+- auto-removing and updating values
+
+Around month six, I decided to rebuild the project from scratch.  
+This rebuild reflects everything I’ve learned so far, including:
+- classes and OOP
+- file I/O
+- JSON save/load system
+- class methods
+- basic architecture separation (Player, Inventory, etc.)
+
+This project was not a smooth ride.  
+I encountered many errors along the way, such as:
+- ValueError
+- SyntaxError
+- FileNotFoundError
+- infinite loops
+- recursive imports
+- misspelled variables
+- broken logic
+
+This rebuild exists to measure my growth:
+how far I can improve,  
+how far I can go,  
+and what limits I still need to break through.
+
+This is a learning project, and it continues to evolve.infinite loops, recursive imports,
 wrong function and so much more.
 
 I create this rebuild to see how far
