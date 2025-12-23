@@ -2,6 +2,7 @@
 
 > ⚠️ This project is still in active development.  
 > Running instructions and setup details will be added later.
+> current Version: V1.6
 
 ## Introduction
 This project started one week after I began learning Python.
