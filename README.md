@@ -1,5 +1,6 @@
 # RPG Console Game (Python)
 
+## Introduction
 This project started one week after I began learning Python.
 
 My first goal was simple:  
@@ -48,3 +49,39 @@ I create this rebuild to see how far
 can i improves, how further can i go,
 and if i ever stop at one point and
 cant go further.
+
+## About the road of lesson i went through
+# Phase 1 — Basics
+- print, input, variables
+- if / else, loops
+- Simple battle logic
+# Phase 2 — Functions
+- def, parameters, returns
+- Game loop & menus
+- Random enemies, inventory (list)
+# Phase 3 — Data & Errors
+- Lists, dicts
+- try / except
+- Cleaner output, fewer crashes
+# Phase 4 — Terminal Polish
+- ANSI colors
+- Better menus & readability
+- Player feedback
+# Phase 5 — OOP Rebuild
+- Classes & objects
+- Player / Enemy separation
+- Reduced globals
+# Phase 6 — Save System
+- File I/O
+- JSON save & load
+- Multiple save slots
+# Phase 7 — Refactor (Current)
+- Inventory & equipment redesign
+- Cleaner architecture
+- Preparing advanced systems
+
+## What My plans
+- Status effects
+- Speed/ATB combat
+- Skills & AI
+- Pygame version
