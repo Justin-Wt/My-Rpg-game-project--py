@@ -1,5 +1,8 @@
 # RPG Console Game (Python)
 
+> ⚠️ This project is still in active development.  
+> Running instructions and setup details will be added later.
+
 ## Introduction
 This project started one week after I began learning Python.
 
