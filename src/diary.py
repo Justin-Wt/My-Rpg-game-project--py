@@ -1,9 +1,9 @@
 '''
-progression≈17% done
-Day passed:10 days
-time developed: 67 hours + 179 hours from first prototype.
+progression≈21% done
+Day passed:11 days
+time developed: 73 hours + 179 hours from first prototype.
 38 hours spent on develoment and handling errors
-24 hours+ spent on learning
+27 hours+ spent on learning
 5 hours – problem solving & algorithm practice:
     -(HackerRank)
 --------------------------updates--------------------------
