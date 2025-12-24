@@ -97,8 +97,12 @@ possible Remake:---------------Imaginations---------------
 |14.using random with commas for drop chances               |amount=random.uniform(min,max)              |
 |15.using only 1 variable to access tuples and dict         |tuples=["itm",5].for x in tuples:print(x[1])|
 |16.using json to save file                                 |with open(save_slot.json) as save:          |
+|17.using entity class as a bridge to apply status          |in enemy.py:super().__init__(name,hp,...)   |
 ----------------------------------------------------------------------------------------------------------
-Current focus: Game architecture, state management, and combat systems
+Current focus:
+    -Game architecture
+    -State management
+    -Combat systems
 Future College Major:Computer Science
 ----------------------------------------------------------------------------------------------------------
 '''
