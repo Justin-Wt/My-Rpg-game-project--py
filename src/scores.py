@@ -1,5 +1,6 @@
 from player import Player
-File="stats.txt"
+from inventory import Inventory
+File="save_slot1.json"
 def load_player():
 	players=[]
 
@@ -7,33 +8,20 @@ def load_player():
 		with open(File,"r") as stats:
 			for indexs, rows in enumerate(stats,start=1):
 				parts=rows.strip().split(":")
-				if len(parts)!=9:
+				if len(parts)!=12:
 					print(f"skipping corrupted line: {rows}")
 					print("error caused because its missing a stats")
 					continue
-				name,hp,strength,defense,level,weapon,health_potion,mana_potion,armor=parts
+				name,rank,race,hp,strength,defense,level,weapon,health_potion,mana_potion,gold,armor=parts
 				try:
-					players.append(Player(name, int(hp), int(strength), int(defense),int(level),weapon,int(health_potion),int(mana_potion),armor))
+					players.append(Player(name, rank,race, int(hp), int(strength), int(defense),int(level),weapon,int(health_potion),int(mana_potion),int(gold),armor))
 				except ValueError:
 					print(f"[line{indexs}] is skipped because its corrupted line: {rows}")
 					print("error caused because one of the variable has a false value")
 					continue
 	except FileNotFoundError:
-		pass 
+		print("no file") 
 	return players
-def save_player(player):
-	players=load_player()
-	update=False
-	for i, p in enumerate(players):
-		if p.name == player.name:
-			players[i]=player
-			update=True
-			break
-	if not update:
-		players.append(player)
-	with open(File, "w") as scor:
-		for p in players:
-			scor.write(f"{p.name}:{p.hp}:{p.strength}:{p.defense}:{p.level}:{p.weapon}:{p.health_potion}:{p.mana_potion}:{p.armor}\n")
 def TopScore(lim=5):
 		stats=load_player()
 		stats.sort(key=lambda a:a.hp+a.strength+a.defense+a.level,reverse=True)
@@ -57,3 +45,9 @@ def reset():
 		with open(File, "w") as scor:
 			pass
 		print("your save is deleted")
+if __name__ == "__main__":
+	player=Player("justin","F","Elf",21,23,21,100,"sword",12,11,123123,"iron armor")
+	print(player)
+	save_player(player)
+	TopScore()
+	input()
