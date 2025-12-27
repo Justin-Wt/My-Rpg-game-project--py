@@ -39,11 +39,6 @@ class Enemy(Entity):
             amount=int(amount*self.drop_multi)
             if amount>0:
                 dropped_item.append((item,amount))
-        if not dropped_item:
-            print(f"The {self.name} dropped nothing")
-        else:
-            print(f"the {self.name} has dropped:\n-",end='')
-            print("\n-".join(f"{amount} {item}" for item,amount in dropped_item))
         return dropped_item
         
     @classmethod
@@ -59,7 +54,7 @@ class Enemy(Entity):
         level=random.randint(1,20)
         areas={
             "forest": [
-                ("Goblin",level, 10, 2, 1, [("gold", 75, 150),("goblin necklace",0,1)]),
+                ("Goblin",level, 10, 2, 1, [("gold", 75, 150),("goblin necklace",0,1)],[]),
 		 	   ("Wolf",level, 12, 3, 4, [("gold", 80, 180),("fang",0,3)],[("double strike",30),("bleed",20)])
                 ],
             "cave": [
