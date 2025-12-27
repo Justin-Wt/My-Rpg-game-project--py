@@ -1,0 +1,26 @@
+{
+    "name": "justin",
+    "race": "Demon",
+    "level": 1,
+    "xp": 27,
+    "hp": 20,
+    "str": 2,
+    "def": 18,
+    "weapon": "Empty",
+    "gold": 200,
+    "hp potion": 5,
+    "mana potion": 0,
+    "armor": "Empty",
+    "accessory 1": "Empty",
+    "accessory 2": "Empty",
+    "inventory": {
+        "weapon": [],
+        "armor": [],
+        "gold": 200,
+        "items": {
+            "health potion": 5,
+            "mana potion": 0
+        },
+        "accessories": []
+    }
+}
