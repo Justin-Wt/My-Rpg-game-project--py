@@ -16,10 +16,12 @@ def attack(attacker,enemy):
 		    print("you've lost")
 		elif enemy.hp==0:
 			loot=enemy.drop_loot()
-			if loot=="nothing":
-				None
+			if not loot:
+				print(f"The {self.name} dropped nothing")
 			else:
+				print(f"the {self.name} has dropped:\n-",end='')
 				for item,amount in loot:
+					print(f"- {amount} {item}")
 					attacker.inventory.add_item(item,amount)
 			return damage
 	
@@ -28,7 +30,7 @@ def status(attacker,enemy):
 
 #battle test
 if __name__=="__main__":
-	player=Player("justin","Elf",hp=1011,strength=2222222,defense=4,weapon="sword",armor="iron armor")
+	player=Player("justin","Elf",hp=10,strength=2222222,defense=4,weapon="sword",armor="iron armor")
 	enemy1=Enemy.from_area("forest","normal")
 	status(player,enemy1)
 	attack(player,enemy1)
