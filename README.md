@@ -85,7 +85,7 @@ This project is considered a learning milestone.
 The next step is rebuilding similar systems using:
 - Pygame
 - Godot
-eventually Unity / Unreal (learning purposes)
+- eventually Unity / Unreal (learning purposes)
 The focus moving forward is:
 game architecture
 state management
