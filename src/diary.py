@@ -1,13 +1,13 @@
 '''
-progression≈21% done
-Day passed:12 days
+progression≈100% done
+Day passed:30 days
 time developed: 
-    -89 hours on this rebuild
+    -175 hours on this rebuild
     -179 hours on first prototype
     -8 hours on first idea
 time that i spent in this rebuild is to:
-    -41 hours spent on develoment and handling errors
-    -36 hours+ spent on learning
+    -96 hours spent on develoment and handling errors
+    -67 hours+ spent on learning
     -12 hours – problem solving & algorithm practice:
         -(HackerRank)        -competitive programming
         -ChatGPT             -Riddles about locating errors
@@ -21,6 +21,8 @@ V1.5:making diary.py
 V1.6:making save and load system using json file
 V1.7:making entity.py and status.py
 V1.8:making UI.py with pygame based code
+V1.9:making state sabe and fight system
+V2.0:connecting all my build to ui.py
 -------------------------Priorites-------------------------
 Priority 1: Pygame core loop mastery (done)
 Not features. Not polish.
@@ -31,17 +33,22 @@ You need muscle memory for:
     -input handling
     -draw vs update separation
 
-Priority 2: State management
-You should explicitly practice:
-    -GAME → MENU → COMBAT → CUTSCENE → FAKE_PAUSE
-    -states that lie
-    -states that ignore pause
-
-Priority 3: Combat system skeleton, not full content
+Priority 2: Combat system skeleton, not full content (done)
    -1 enemy
    -ATB bar
    -interrupt
    -cooldown
+
+priority 3: Finalize (done)
+    -wiring everything into ui.py
+    -making floating damage
+
+priority 4: Refactor again. to godot this time (on going)
+priotity 5: makes it alive
+    -add map
+    -add npc that can talk
+    -add sprites and images
+    -add cutscene and sounds
 ----------------------UpcomingFeature----------------------
 1.enemy special attack
 2.duration for special attack
@@ -58,6 +65,11 @@ Priority 3: Combat system skeleton, not full content
 13.converting into .apk
 14.using cv2
 15.using socket
+------------------------CrazyIdeas------------------------
+1.Boss that can cause hallucination
+2.Boss that can change attack rule
+3.Boss that can warp time
+4.Boss that can break dimension
 possible Remake:---------------Imaginations---------------
 1.Town Npc
 2.2D Open World
@@ -133,10 +145,25 @@ possible Remake:---------------Imaginations---------------
 |23.using scaling to switch between phone and laptop       |scale=max(0.75,min(min(wdth/bs_w,...),1.2))  |
 |24.using event to actively resize button to landscape     |if event.type==pygame.VIDEORESIZE:positions  |
 |25.using offsets to easily moves everything               |UI_W,UI_H=0,0  width+=UI_W height+=UI_H      |
-|26.using ui surface for better optimization               |ui=pygame.Surface((wth, hgt),pygame.SRCALPHA)|
+|26.using ui surface for better optimization(for op PC)    |ui=pygame.Surface((wth, hgt),pygame.SRCALPHA)|
+|27.showing fps                                            |ui_surface.blit(font.render(clock.get_fps()))|
+|28.applying input                                         |TEXTINPUT and KEYDOWN K_BACKSPACE events     |
+|29. separating logic from presentation                    |ui.py only renders state, not rules          |
+|30. state-driven architecture                             |STATE_MENU,STATE_BATTLE,STATE_SHOP           |
+|31. data-driven thinking                                  |shop_items and save file is a data           |
+|32.seperating stuff                                       |seperating button,update,event,drawing       |
+|33. tracing bugs across files                             |following variable flow across modules       |
+|34. reading unfamiliar code under time pressure           |speed-reading copied code and adapting it    |
+|35. isolating logic bugs vs UI bugs                       |knowing when an issue is visual vs systemic  |
+|36. input state vs game state separation                  |buttons active only in certain states        |
+|37. dynamic UI layout                                     |resizing UI based on screen orientation      |
+|38. event-driven UI instead of polling                    |using pygame events properly                 |
+|39. incremental development                               |building skeleton systems before content     |
+|40. refactoring without breaking functionality            |rebuilding entire project without breaking   |
+|41. technical debt awareness                              |knowing when code is "working but bad"       |
 ----------------------------------------------------------------------------------------------------------
 Current focus:
-    -Pygame
+    -Godot
     -Game architecture
     -State management
     -Combat systems
