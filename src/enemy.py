@@ -1,11 +1,23 @@
 import random
+from status import StatusEffect,create_status
 from entity import  Entity
 RED = "\033[0;31m"
 BLUE = "\033[0;34m"
 YELLOW = "\033[1;33m"
 END = "\033[0m"
 class Enemy(Entity):
-    def __init__(self,name="None",level=1,base_hp=10,base_strength=3,base_defense=2,loot=None,drop_multi=1,special_attack=None):
+    def __init__(
+        self,
+        name="None",
+        level=1,
+        base_hp=10,
+        base_strength=3,
+        base_defense=2,
+        loot=None,
+        drop_multi=1,
+        special_attack=None,
+        speed=60
+    ):
        self.level=level
        hp=base_hp+3*level
        strength=base_strength+level
@@ -14,24 +26,42 @@ class Enemy(Entity):
        super().__init__(name,hp,defense,strength)
        self.drop_multi=drop_multi
        self.loot=loot if loot is not None else []
-       
-    def attack(self,player):
-        if self.special_attack is not None:
-            for item in self.special_attack:
-                special_attack_name,special_attack_chance,special_attack_damage= item
-                chance=random.randint(1,100)
-                if chance<=special_attack_chance:
-                    damage=special_attack_damage if special_attack_damage is not None else 0
-                    player.apply_status(special_attack_name)
-                    player.hp=max(0,player.hp-damage)
-                    print(f"the {self.name} use {special_attack_name} and dealt {damage}")
-                    return damage
-        else:
-            damage=max(0,self.strength-player.defense)
-            player.hp=max(0,player.hp-damage)
-            print(f"the {self.name} dealt {damage} damage")
+       self.speed=speed
+       self.atb=0
+    def update_atb(self,dt):
+        if not self.can_act:
+            return
+        if self.atb<100:
+            self.atb+=self.speed*dt
+        elif self.atb>=100:
+            self.atb=100
+    def attack(self, player):
+        player.update_statuses()
+    # Try special attacks first
+        for atk in self.special_attack:
+            roll = random.randint(1, 100)
+            if roll <= atk.get("chance", 0):
+                total_damage = 0
+                hits = atk.get("hits", 1)
+
+                for _ in range(hits):
+                    dmg = max(0, atk.get("damage", 0) - player.defense)
+                    total_damage += dmg
+                    player.hp = max(0, player.hp - dmg)
+
+                if "status" in atk:
+                    player.apply_status(create_status(atk["status"]))
+
+                print(f"{self.name} used {atk['name']} ({hits} hit) for {total_damage} damage!")
+                return total_damage
+
+        # Fallback to normal attack
+        damage = max(0, self.strength - player.defense)
+        player.hp = max(0, player.hp - damage)
+        print(f"{self.name} dealt {damage} damage.")
         return damage
-        
+    def get_exp(self):
+        return self.level *int(random.uniform(5,20))
     def drop_loot(self):
         dropped_item=[]
         for item,minimum,maximum in self.loot:
@@ -40,7 +70,6 @@ class Enemy(Entity):
             if amount>0:
                 dropped_item.append((item,amount))
         return dropped_item
-        
     @classmethod
     def from_area(cls, area, tier):
         ranks = {
@@ -54,19 +83,89 @@ class Enemy(Entity):
         level=random.randint(1,20)
         areas={
             "forest": [
-                ("Goblin",level, 10, 2, 1, [("gold", 75, 150),("goblin necklace",0,1)],[]),
-		 	   ("Wolf",level, 12, 3, 4, [("gold", 80, 180),("fang",0,3)],[("double strike",30),("bleed",20)])
+                (
+                    "Goblin",
+                    level, 10, 2, 1, 
+                    [
+                        ("gold", 75, 150),
+                        ("goblin necklace",0,1)
+                    ],
+                    [],
+                    40
+                ),
+		 	    (
+                    "Wolf",
+                    level, 12, 3, 4, 
+                        [
+                        ("gold", 80, 180),
+                        ("fang",0,3)],
+                        [
+                            {
+                                "name":"double strike",
+                                "chance":30,
+                                "damage":3,
+                                "hits":2
+                            },
+                            {
+                                "name":"bleed",
+                                "chance":20,
+                                "damage":3,
+                                "status":"bleed",
+                                "hits":1
+                            }
+                        ],
+                        80
+                    )
                 ],
             "cave": [
-                ("Slime",level, 8, 1, 0, [("gold", 5, 20),("slime gel", 1, 4),("health potion", 0, 1),("sticky core", 0, 0.1)],[("toxic spit",50)]),
-                ("Bat", level, 9, 2, 1, [("gold",5,10),("bat wing", 0, 1),("echo dust", 0, 1),("blood vial", 0, 0.5),("bat fang", 0, 0.1)],["scream",30])
-                ]
-            }
+                (
+                    "Slime",
+                    level, 8, 2, 0, 
+                    [
+                        ("gold", 5, 20),
+                        ("slime gel", 1, 4),
+                        ("health potion", 0, 1),
+                        ("sticky core", 0, 0.1)],
+                        [
+                            {
+                                "name":"toxic spit",
+                                "chance":50,
+                                "damage":2,
+                                "status":"poison",
+                                "hits":1
+                            }
+                        ],
+                        35
+                    ),
+                (
+                    "Bat", 
+                    level, 9, 2, 1,
+                    [
+                        ("gold",5,10),
+                        ("bat wing", 0, 1),
+                        ("echo dust", 0, 1),
+                        ("blood vial", 0, 0.5),
+                        ("bat fang", 0, 0.1)
+                    ],
+                    [
+                        {
+                            "name":"scream",
+                            "chance":30,
+                            "damage":2,
+                            "status":"stun",
+                            "hits":1
+                        }
+                    ],
+                    90
+                )
+                
+            ]
+        }
         test_area = areas.get(area)
         if test_area is None:
             print("that's not a valid zone")
             return None
-        name, lvl, hp, strength, defense, loot, special_attack= random.choice(test_area)
+        name, lvl, hp, strength, defense, loot, special_attack,speed= random.choice(test_area)
 
         return cls(
             name,
@@ -76,12 +175,18 @@ class Enemy(Entity):
             defense,
             loot,
             drop_multi,
-            special_attack
+            special_attack,
+            speed
         )
     def __str__(self):
         return f"{self.name:<10} level:{self.level}\n{'':-<20}\n{RED}hp:{self.hp}{END}\n{YELLOW}strength:{self.strength}{END}\n{BLUE}defense:{self.defense}{END}\n{'':-<20}"
 if __name__=="__main__":
+    from player import  Player
     enemy=Enemy.from_area("cave","boss")
     print(enemy)
+    player=Player("justin","Elf",13,2,1)
+    print(player)
+    enemy.attack(player)
+    print(player)
     enemy.drop_loot()
     input()
