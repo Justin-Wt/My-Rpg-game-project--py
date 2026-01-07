@@ -96,6 +96,6 @@ This project reflects real learning, not tutorials copied line-by-line
 Code quality improves across versions
 Early decisions may look messy — they are preserved intentionally
 This repository is part of my programming journey
-#🧑‍💻 Author
+# 🧑‍💻 Author
 Built by a student who got bored during holidays
 and accidentally made a game.
