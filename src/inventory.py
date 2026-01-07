@@ -1,17 +1,27 @@
 class Inventory:
-    def __init__(self, weapon="Empty",armor="Empty",gold=0,items=None,accessories="Empty"):
+    def __init__(
+        self,
+        weapon=[],
+        armor=[],
+        gold=200,
+        items={},
+        accessories=[]
+        ):
         self.weapon = weapon if weapon is not None else[]
         self.armor = armor if armor is not None else[]
         self.gold=gold
         self.items = items if items is not None else {}
         self.accessories=accessories if accessories is not None else []
+        
     def add_item(self, item, amount=1):
         stackable=["health potion","mana potion","gold","slime gel","sticky core","fang"]
         weapon=["sword","dagger"]
         # Non-stackable items
         if item in stackable:
             # Stackable items
-            if item in self.items:
+            if item == "gold":
+                self.gold+=amount
+            elif item in self.items:
                 self.items[item] += int(amount)
             else:
                 self.items[item] = int(amount)
