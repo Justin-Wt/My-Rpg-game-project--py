@@ -5,6 +5,7 @@ import sys
 import os
 import random
 from shop import sell_item,shop_items,buy_item
+from inventory import Inventory
 from player import  Player
 from enemy import Enemy
 from race import  race_pick
@@ -62,7 +63,7 @@ big_font=pygame.font.Font(default_font,int(80*scale))
 race_font=pygame.font.Font(default_font,int(160*scale))
 # Button class
 class Button:
-    def _init_(self, x, y, w, h, text, color=(255,255,255), font=pygame.font.Font(default_font, int(75 * scale)),hover_color=(100,100,100),text_color=(0,0,0)):
+    def __init__(self, x, y, w, h, text, color=(255,255,255), font=pygame.font.Font(default_font, int(75 * scale)),hover_color=(100,100,100),text_color=(0,0,0)):
         self.rect = pygame.Rect(x, y, w, h)
         self.rect.center=x,y
         self.text = text
@@ -658,7 +659,7 @@ def draw_shop():
 def draw_sell(lists,price,amount,item):
     pygame.draw.rect(ui_surface,(100,100,100),(width//8,height//12-5,width-width//8,height-height//3+10))
     return_button.draw(ui_surface)
-    for item,, in lists:
+    for item,_,_ in lists:
         item.draw(ui_surface)
     if how_much:
         dim_overlay = pygame.Surface((width, height))
