@@ -83,7 +83,6 @@ Pygame version (visual UI)
 # 🚀 Future Direction
 This project is considered a learning milestone.
 The next step is rebuilding similar systems using:
-- Pygame
 - Godot
 - eventually Unity / Unreal (learning purposes)
 The focus moving forward is:
@@ -99,3 +98,5 @@ This repository is part of my programming journey
 # 🧑‍💻 Author
 Built by a student who got bored during holidays
 and accidentally made a game.
+# 🎯 How to run the game
+
