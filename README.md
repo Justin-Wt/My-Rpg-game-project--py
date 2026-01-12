@@ -99,7 +99,7 @@ This repository is part of my programming journey
 Built by a student who got bored during holidays
 and accidentally made a game.
 # 🎯 How to run the game
-- download the playable game
+- download the playable-file
 - extract the game
 - open the Main.py
 - run the code
